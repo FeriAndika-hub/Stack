@@ -1,0 +1,116 @@
+#include <iostream>
+
+using namespace std;
+
+int Pool[5];
+int top=-1,temp;
+
+bool isFull(){
+	if(top==4){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+bool isEmpty(){
+	if(top==-1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+void Push(int a){
+	if(isFull()){
+		cout<<"Stack is Overflow!\n\n";
+	}else{
+		top++;
+		Pool[top]=a;
+	}
+}
+
+int Pop(){
+	if(isEmpty()){
+		cout<<"Stack is Underflow!\n\n";
+	}else{
+		temp=Pool[top];
+		top--;
+		return temp;
+	}
+}
+
+int Peek(){
+	
+	return Pool[top];
+}
+
+void Display(){
+	if(isEmpty()){
+		cout<<"--Stack is Empty--\n\n";
+	}else if(isFull()){
+		cout<<"--Stack is Full--\n\n";
+	}else{
+		cout<<"--List Data--\n";
+		for(int i=top;i>=0;i--){
+			cout<<Pool[i]<<"\n";
+		}
+		cout<<"\n";
+	}
+}
+
+void Clear(){
+	if(isEmpty()){
+		cout<<"Stack is Empty. There's no any data to clear\n\n";
+	}else{
+		for(int i=top;i>=0;i--){
+			top--;
+		}
+	}
+}
+
+int main(){
+	int choice,x;
+	
+	cout<<"---OPTION---\n";
+	cout<<"1.Push\n2.Pop\n3.Peek\n4.Display\n5.Clear\n0.Exit\n\n";
+
+	do{
+		cout<<"Choose : ";
+		cin>>choice;
+	
+		switch(choice){
+			
+			case 0:
+				break;
+			case 1:
+				cout<<"Enter a value to be pushed : ";cin>>x;
+				Push(x);
+				break;
+			case 2:
+				cout<<"Data that is being poped : "<<Pop()<<"\n\n";
+				Display();
+				break;
+			case 3:
+				cout<<"The top value of the stack is "<<Peek()<<"\n\n";
+				break;
+			case 4:
+				Display();
+				break;
+			case 5:
+				Clear();
+				break;
+				
+			default :
+				cout<<"The number you enter is unavailable in option. Please enter the right number\n\n";
+				break;
+		}
+		
+	}while(choice!=0);
+	
+	cout<<"\nThe program is finished!\n";
+	cout<<"Thank you";
+	
+	return 0;
+	
+}
